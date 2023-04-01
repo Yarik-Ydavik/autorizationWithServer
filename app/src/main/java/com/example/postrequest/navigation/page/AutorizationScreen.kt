@@ -1,5 +1,6 @@
 package com.example.postrequest.navigation.page
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -11,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.postrequest.elementsUI.textField
 import com.example.postrequest.network.request.Autorization
+import io.ktor.client.call.*
 import kotlinx.coroutines.runBlocking
 
 @Composable
@@ -24,7 +26,10 @@ fun AutorizationScreen(navController: NavHostController, onNavigationToPayment: 
         textField(label = "Ваш пароль", text = password, onTextChange = {value -> password = value})
         Spacer(modifier = Modifier.height(10.dp))
 
-        Button(onClick = { runBlocking { txt = Autorization().postAutorization(mail, password) } }, shape = RoundedCornerShape(10), colors = ButtonDefaults.buttonColors(backgroundColor = Color(red = 13, green = 110, blue = 253))) {
+        Button(onClick = { runBlocking {
+            txt = Autorization().postAutorization(mail, password).avatar
+            Log.d("text",txt)
+        } }, shape = RoundedCornerShape(10), colors = ButtonDefaults.buttonColors(backgroundColor = Color(red = 13, green = 110, blue = 253))) {
             Text(text = "Авторизоваться", color = Color.White)
         }
         Spacer(modifier = Modifier.height(10.dp))
