@@ -10,7 +10,8 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 class Autorization {
-    suspend fun postAutorization(mail: String, password: String): User {
+    /*User*/
+    suspend fun postAutorization(mail: String, password: String): HttpStatusCode {
         val responce: HttpResponse = ClientServer.client.post("https://app.izumra.ru/api/user"){
             contentType(ContentType.Application.Json)
             setBody(
@@ -21,6 +22,7 @@ class Autorization {
                 )
             )
         }
-        return Json.decodeFromString(responce.bodyAsText())
+        /*Json.decodeFromString(responce.bodyAsText())*/
+        return responce.status
     }
 }

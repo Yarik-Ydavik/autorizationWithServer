@@ -48,6 +48,14 @@ android {
 }
 
 dependencies {
+    implementation 'com.github.Yarik-Ydavik:image_gallery:1.4'
+    implementation 'androidx.compose.material:material-icons-extended:1.4.1'
+
+    implementation 'io.coil-kt:coil-compose:2.2.2'
+
+
+    implementation 'com.google.maps.android:maps-compose:2.11.0'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
 
     implementation 'ru.yoomoney.sdk.kassa.payments:yookassa-android-sdk:6.5.0'
 
@@ -67,7 +75,9 @@ dependencies {
     implementation("io.ktor:ktor-client-logging:$ktor_version")
     implementation("io.ktor:ktor-client-cio:$ktor_version")
 
+
     implementation "androidx.navigation:navigation-compose:2.4.2"
+
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.activity:activity-compose:1.3.1'

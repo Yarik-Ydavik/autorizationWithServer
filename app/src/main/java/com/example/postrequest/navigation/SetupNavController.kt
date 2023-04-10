@@ -1,28 +1,24 @@
 package com.example.postrequest.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.postrequest.data.autorization.AuthManager
 import com.example.postrequest.navigation.page.AutorizationScreen
 import com.example.postrequest.navigation.page.HomeScreen
-import com.example.postrequest.navigation.page.PaymentScreen
-import com.example.postrequest.navigation.page.RegistrationScreen
-import com.example.postrequest.utils.Constants
+import com.example.postrequest.navigation.page.ProfileScreen
+import com.example.postrequest.navigation.page.StartScreen
 
-sealed class Screens (val route: String){
-    object Home: Screens(route = Constants.Screens.SCREEN_HOME)
-    object Registration: Screens(route = Constants.Screens.SCREEN_REGISTRATION)
-    object Autorization:Screens(route = Constants.Screens.SCREEN_AUTORIZATION)
-    object Payment: Screens(route = Constants.Screens.SCREEN_PAYMENT)
-}
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun SetupNavController(
     navController: NavHostController,
     startDestination: String = Screens.Home.route,
-    modifier: Modifier = Modifier
+    authPrefs: AuthManager,
 ){
     NavHost(
         navController = navController,
@@ -30,25 +26,16 @@ fun SetupNavController(
     ){
         composable( route = Screens.Home.route){
             HomeScreen(
-                onNavigationToRegistration = {navController.navigate(Screens.Registration.route)},
-                onNavigationToAutorization = {navController.navigate(Screens.Autorization.route)},
+                navControllerMain = navController,
+                authPrefs = authPrefs
             )
         }
-        composable( route = Screens.Registration.route){
-            RegistrationScreen(
-                navController = navController
-            ) { navController.navigate(Screens.Payment.route) }
-        }
+
         composable( route = Screens.Autorization.route){
             AutorizationScreen(
                 navController = navController,
-                onNavigationToPayment = { navController.navigate(Screens.Payment.route) },
             )
         }
-        composable( route = Screens.Payment.route){
-            PaymentScreen(
-                navController = navController
-            )
-        }
+
     }
 }

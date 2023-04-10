@@ -32,8 +32,8 @@ fun buttonPayment() {
 
     val paymentParameters = PaymentParameters(
         amount = Amount(BigDecimal.valueOf(10.00), Currency.getInstance("RUB")),
-        title = "Андрей Чернышёв",
-        subtitle = "Студент ОКЭИ",
+        title = "Андрей",
+        subtitle = "",
         clientApplicationKey = "test_MjAxMzIwxdkkzAEuA62MwZJBswL4idkF48kt7VfCD3c",
         shopId = "201320",
         savePaymentMethod = SavePaymentMethod.OFF,
